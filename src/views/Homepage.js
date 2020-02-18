@@ -1,41 +1,38 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
+import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
 import Header from "./components/header/header.js";
 import Footer from "./components/footer/footer.js";
 import Countries from "./Countries.js";
 
-class Homepage extends React.Component {
-  state = { width: 0, height: 0 };
+function Homepage() {
+  const mdWidth = 768;
+  const [width, setWidth] = useState(0);
 
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
+  function updateWindowDimensions() {
+    setWidth(window.innerWidth);
   }
+  useEffect(() => {
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-  }
+    // returned function will be called on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions);
+    };
+  }, []);
 
-  updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth });
-  };
-
-  render() {
-    const mdWidth = 768;
-    return (
-      <React.Fragment>
-        <Container
-          fixed
-          style={{
-            backgroundColor: "#F5F5F5"
-          }}>
-          <Header isMobileSized={this.state.width < mdWidth} />
-          <Countries isMobileSized={this.state.width < mdWidth} />
-          <Footer />
-        </Container>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Container
+        style={{
+          backgroundColor: "#F5F5F5"
+        }}>
+        <Header isMobileSized={width < mdWidth} />
+        <Countries isMobileSized={width < mdWidth} />
+        <Footer />
+      </Container>
+    </React.Fragment>
+  );
 }
 
 export default Homepage;
