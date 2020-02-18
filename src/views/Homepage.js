@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
+import Container from "react-bootstrap/Container";
 import Header from "./components/header/header.js";
 import Footer from "./components/footer/footer.js";
 import Countries from "./Countries.js";
@@ -25,7 +25,6 @@ class Homepage extends React.Component {
     return (
       <React.Fragment>
         <Container
-          fixed
           style={{
             backgroundColor: "#F5F5F5"
           }}>
