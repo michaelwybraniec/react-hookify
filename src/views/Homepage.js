@@ -31,7 +31,6 @@ function Homepage() {
         }}>
         <Header isMobileSized={width < mdWidth} />
         <Countries isMobileSized={width < mdWidth} />
-
         <Footer />
       </Container>
     </React.Fragment>
