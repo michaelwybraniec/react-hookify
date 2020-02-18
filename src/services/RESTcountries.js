@@ -34,6 +34,17 @@ const formatJSON = (
     }))
   );
 };
+
+const fetchAPI = searchInput => {
+  let url = searchInput
+    ? `https://restcountries.eu/rest/v2/name/${searchInput}`
+    : "https://restcountries.eu/rest/v2/all";
+  return fetch(url).then(results => {
+    return results.json();
+  });
+};
+
 module.exports = {
-  formatJSON
+  formatJSON,
+  fetchAPI
 };
