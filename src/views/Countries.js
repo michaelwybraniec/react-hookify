@@ -57,9 +57,14 @@ const Countries = ({ isMobileSized }) => {
     });
   };
 
-  //Load all countries on init
+  // Load all countries on init
+  // Below due to the error: Cannot compile namespaces when the '--isolatedModules' flag is provided.  TS1208
+  // eslint-disable-next-line
   useEffect(() => APIGetAll(), []);
-  //Search countries on input change
+
+  // Search countries on input change
+  // Below due to the error: Cannot compile namespaces when the '--isolatedModules' flag is provided.  TS1208
+  // eslint-disable-next-line
   useEffect(() => APIGetAll(false), [searchInput]);
 
   const getSearchInputData = singleSearchBarData => {

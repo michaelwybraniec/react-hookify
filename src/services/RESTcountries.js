@@ -1,11 +1,12 @@
-const formatJSON = (
-  APIresponse,
+
+ export const formatJSON = (
+  responseAPI,
   allNonModifiedCountries,
   allCountries = true
 ) => {
   return (
-    APIresponse &&
-    APIresponse.map(c => ({
+    responseAPI &&
+    responseAPI.map(c => ({
       flag: c.flag,
       alpha3Code: c.alpha3Code ? c.alpha3Code : "",
       nativeName: c.nativeName ? c.nativeName : "",
@@ -17,7 +18,7 @@ const formatJSON = (
       nameOfBorderCountries: allCountries
         ? c.borders
           ? c.borders.map(code => {
-              const country = APIresponse.find(
+              const country = responseAPI.find(
                 country => country.cioc === code || country.alpha3Code === code
               );
               return country.name ? country.name : code;
@@ -35,7 +36,7 @@ const formatJSON = (
   );
 };
 
-const fetchAPI = searchInput => {
+ export const fetchAPI = searchInput => {
   let url = searchInput
     ? `https://restcountries.eu/rest/v2/name/${searchInput}`
     : "https://restcountries.eu/rest/v2/all";
@@ -44,7 +45,9 @@ const fetchAPI = searchInput => {
   });
 };
 
-module.exports = {
-  formatJSON,
-  fetchAPI
-};
+ // Err to investigate, if using module.exports
+ // Cannot compile namespaces when the '--isolatedModules' flag is provided.  TS1208
+ // module.exports = {
+ //  formatJSON,
+ //  fetchAPI
+ // };
