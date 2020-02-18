@@ -9,7 +9,6 @@ function Homepage() {
   const [width, setWidth] = useState(0);
 
   function updateWindowDimensions() {
-    console.log('updateWindowDimensions')
     setWidth(window.innerWidth);
   }
   useEffect(() => {
@@ -24,7 +23,6 @@ function Homepage() {
 
   return (
     <React.Fragment>
-      {width}
       <Container
         style={{
           backgroundColor: "#F5F5F5"
